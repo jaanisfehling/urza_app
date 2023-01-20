@@ -1,6 +1,20 @@
-import React from 'react';
-import {FlatList, View, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
+import axios from 'axios';
+
+let MockAdapter = require("axios-mock-adapter");
+
+let mock = new MockAdapter(axios);
+mock.onGet("/api/initial-articles").reply(200, [
+    {headline: "Headline", date: "January 13, 2023 06:55", summary: "This is a major Change"},
+    {headline: "Headline", date: "January 13, 2023 06:54", summary: "Breaking News"},
+    {
+        headline: "Headline",
+        date: "January 13, 2023 06:53",
+        summary: "summary asujhagdfsgjafkahjfkabfajhvbjkadnvouiaohkdmv jhuGIHOKDVNBCJHGAUHIOKFSDMVBOUIAHJVHAJVDBL"
+    }]
+)
 
 const styles = StyleSheet.create({
     container: {
@@ -29,18 +43,23 @@ const styles = StyleSheet.create({
 });
 
 export default function HeadlineScreen({navigation}) {
+    const [articleListState, setArticleList] = useState([]);
+
+    useEffect(async () => {
+        const result = await axios(
+            "/api/initial-articles",
+        );
+        setArticleList(result.data);
+    });
+
+    const addElement = (elem) => {
+        setArticleList([articleListState, elem]);
+    }
+
     return (
         <View style={styles.container}>
             <FlatList
-                data={[
-                    {headline: "Headline", date: "January 13, 2023 06:55", summary: "This is a major Change"},
-                    {headline: "Headline", date: "January 13, 2023 06:54", summary: "Breaking News"},
-                    {
-                        headline: "Headline",
-                        date: "January 13, 2023 06:53",
-                        summary: "The World is dying and we should be worried. This text is stupid fuckk off"
-                    },
-                ]}
+                data={articleListState}
                 renderItem={({item}) =>
                     <Card style={styles.card} onPress={() => navigation.navigate("Article")}>
                         <Card.Title style={styles.title} titleStyle={styles.headline} subtitleStyle={styles.date}
