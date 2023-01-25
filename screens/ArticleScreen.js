@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {WebView} from 'react-native-webview';
+import {Button, View} from "react-native";
+import Modal from "react-native-modal";
 
 export default function ArticleScreen({route, navigation}) {
     const injectedJavaScript = `
@@ -7,13 +9,37 @@ export default function ArticleScreen({route, navigation}) {
         for (var i = 0; i < elements.length; i++) {
             elements[i].style.fontSize = "50px";
         }`;
+
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+
+    React.useEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <Button onPress={toggleModal} title="Trade" color="#123456"/>
+            ),
+        });
+    }, [navigation, setModalVisible]);
+
     return (
-        // <View style={{padding: 20}}>
-        <WebView
-            originWhitelist={['*']}
-            source={{html: route.params.html}}
-            injectedJavaScript={injectedJavaScript}
-        />
-        // </View>
+        <View>
+            <WebView
+                originWhitelist={['*']}
+                source={{html: route.params.item.html}}
+                injectedJavaScript={injectedJavaScript}
+            />
+            <View style={{flex: 1}}>
+                <Modal isVisible={isModalVisible}>
+                    <View style={{flex: 1}}>
+                        <Text>Hello!</Text>
+
+                        <Button title="Hide modal" onPress={toggleModal} color="#123456"/>
+                    </View>
+                </Modal>
+            </View>
+        </View>
     );
 }

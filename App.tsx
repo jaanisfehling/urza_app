@@ -14,14 +14,9 @@ export default function App() {
             <Stack.Navigator initialRouteName="Headlines">
                 <Stack.Screen name="Headlines" component={HeadlineScreen}/>
                 <Stack.Screen name="Article" component={ArticleScreen} options={({navigation, route}) => ({
-                    headerRight: () => (
-                        <Button
-                            onPress={() => navigation.navigate("Trading", route.params.tickers)}
-                            title="Trade"
-                            color="#123456"
-                        />)
+                    headerRight: () => (<Button title="Trade" color="#123456"/>)
                 })}/>
-                <Stack.Screen name="Trading" component={TradingScreen}/>
+                {/*<Stack.Screen name="Trading" component={TradingScreen}/>*/}
             </Stack.Navigator>
         </NavigationContainer>
     );

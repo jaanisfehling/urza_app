@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000',
     },
     card: {
-        backgroundColor: "#002a5d",
+        backgroundColor: "#123456",
         borderRadius: 18,
         margin: 5,
     },
@@ -72,7 +72,7 @@ export default function HeadlineScreen({navigation}) {
                 renderItem={({item}) => {
                     return (
                         <Card style={styles.card}
-                              onPress={() => navigation.navigate("Article", {html: item.html, tickers: item.tickers})}>
+                              onPress={() => navigation.navigate("Article", item)}>
                             <Card.Title style={styles.title} titleStyle={styles.headline} subtitleStyle={styles.date}
                                         title={item.headline}
                                         subtitle={item.date}/>
