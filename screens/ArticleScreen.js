@@ -10,6 +10,7 @@ export default function ArticleScreen({route, navigation}) {
             elements[i].style.fontSize = "50px";
         }`;
 
+
     const [isModalVisible, setModalVisible] = useState(false);
 
     const toggleModal = () => {
@@ -30,12 +31,11 @@ export default function ArticleScreen({route, navigation}) {
                 originWhitelist={['*']}
                 source={{html: route.params.item.html}}
                 injectedJavaScript={injectedJavaScript}
+                style={{opacity: 0.99, overflow: "hidden", flex: 2}}
             />
-            <View style={{flex: 1}}>
+            <View style={{flex: 2}}>
                 <Modal isVisible={isModalVisible}>
-                    <View style={{flex: 1}}>
-                        <Text>Hello!</Text>
-
+                    <View style={{flex: 3}}>
                         <Button title="Hide modal" onPress={toggleModal} color="#123456"/>
                     </View>
                 </Modal>
