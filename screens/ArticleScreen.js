@@ -1,45 +1,33 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {WebView} from 'react-native-webview';
 import {Button, View} from "react-native";
 import Modal from "react-native-modal";
 
 export default function ArticleScreen({route, navigation}) {
     const injectedJavaScript = `
-        var elements = document.querySelectorAll("p,ul,ol");
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].style.fontSize = "50px";
+        var pageDivs = document.getElementsByClassName("page");
+        for (var i = 0; i < pageDivs.length; i++) {
+            pageDivs[i].style.margin = "20px";
+        };
+        var textElemns = document.querySelectorAll("p,ul,ol");
+        for (var i = 0; i < textElemns.length; i++) {
+            textElemns[i].style.fontSize = "50px";
         }`;
 
 
-    const [isModalVisible, setModalVisible] = useState(false);
-
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
-    };
-
-    React.useEffect(() => {
+    useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <Button onPress={toggleModal} title="Trade" color="#123456"/>
+                <Button onPress={() => navigation.navigate("Select_Instruments", {article: route.params.article})} title="Trade" color="#123456"/>
             ),
         });
-    }, [navigation, setModalVisible]);
+    }, [navigation]);
 
     return (
-        <View>
-            <WebView
-                originWhitelist={['*']}
-                source={{html: route.params.item.html}}
-                injectedJavaScript={injectedJavaScript}
-                style={{opacity: 0.99, overflow: "hidden", flex: 2}}
-            />
-            <View style={{flex: 2}}>
-                <Modal isVisible={isModalVisible}>
-                    <View style={{flex: 3}}>
-                        <Button title="Hide modal" onPress={toggleModal} color="#123456"/>
-                    </View>
-                </Modal>
-            </View>
-        </View>
+        <WebView
+            originWhitelist={['*']}
+            source={{html: route.params.article.html}}
+            injectedJavaScript={injectedJavaScript}
+        />
     );
 }
