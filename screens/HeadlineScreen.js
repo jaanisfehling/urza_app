@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
-import axios from 'axios';
+import {axiosInstance} from "../axiosInstance";
 
 
 const styles = StyleSheet.create({
@@ -34,7 +34,7 @@ export default function HeadlineScreen({navigation}) {
 
     useEffect(() => {
         const fetchInitialArticles = async () => {
-            const response = await axios.get("/api/initial-articles").catch(err => {
+            const response = await axiosInstance.get("/api/initial-articles").catch(err => {
                 console.error(err);
             });
             setArticleList(response.data);

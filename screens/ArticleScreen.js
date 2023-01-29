@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {WebView} from 'react-native-webview';
-import {Button, View} from "react-native";
-import Modal from "react-native-modal";
+import {Button} from "react-native";
 
 export default function ArticleScreen({route, navigation}) {
     const injectedJavaScript = `
@@ -18,7 +17,8 @@ export default function ArticleScreen({route, navigation}) {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <Button onPress={() => navigation.navigate("Select_Instruments", {article: route.params.article})} title="Trade" color="#123456"/>
+                <Button onPress={() => navigation.navigate("Select Instruments", {article: route.params.article})}
+                        title="Trade" color="#123456"/>
             ),
         });
     }, [navigation]);
