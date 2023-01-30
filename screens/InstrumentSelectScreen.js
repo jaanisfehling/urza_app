@@ -3,6 +3,7 @@ import {FlatList, StyleSheet, View, Text} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
 import {axiosInstance} from "../axiosInstance";
+import { CandlestickChart } from 'react-native-wagmi-charts';
 
 
 const styles = StyleSheet.create({
@@ -63,11 +64,11 @@ export default function InstrumentSelectScreen({route, navigation}) {
                 rowStyle={styles.dropdownRow}
                 rowTextStyle={styles.dropdownRowText}
             />
-            {/*<CandlestickChart.Provider data={stockData[selectedTicker].ohlc}>*/}
-            {/*    <CandlestickChart>*/}
-            {/*        <CandlestickChart.Candles/>*/}
-            {/*    </CandlestickChart>*/}
-            {/*</CandlestickChart.Provider>*/}
+            <CandlestickChart.Provider data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : {}}>
+                <CandlestickChart>
+                    <CandlestickChart.Candles/>
+                </CandlestickChart>
+            </CandlestickChart.Provider>
 
             <DuoToggleSwitch
                 primaryText="Call"
