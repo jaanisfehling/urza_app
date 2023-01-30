@@ -17,7 +17,7 @@ export default function ArticleScreen({route, navigation}) {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <Button onPress={() => navigation.navigate("Select Instruments", {article: route.params.article})}
+                <Button onPress={() => navigation.navigate("Select Instrument", {article: route.params.article})}
                         title="Trade" color="#123456"/>
             ),
         });

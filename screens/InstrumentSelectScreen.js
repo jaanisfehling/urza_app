@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, View} from "react-native";
+import {FlatList, StyleSheet, View, Text} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
 import {axiosInstance} from "../axiosInstance";
@@ -8,36 +8,40 @@ import {axiosInstance} from "../axiosInstance";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 10
+        margin: 10,
     },
-    dropdownBtnStyle: {
+
+    dropdownBtn: {
         height: 50,
         backgroundColor: "#ffffff",
         borderRadius: 8,
         borderWidth: 1,
         borderColor: "#444444",
     },
-    dropdownBtnTextStyle: {color: '#444', textAlign: "left"},
-    dropdownDropdownStyle: {backgroundColor: "#EFEFEF", borderRadius: 8},
-    dropdownRowStyle: {backgroundColor: "#EFEFEF", borderBottomColor: "#C5C5C5"},
-    dropdownRowTextStyle: {color: '#444', textAlign: "left"},
+    dropdownBtnText: {color: "#444", textAlign: "left"},
+    dropdownDropdown: {backgroundColor: "#EFEFEF", borderRadius: 8},
+    dropdownRow: {backgroundColor: "#EFEFEF", borderBottomColor: "#C5C5C5"},
+    dropdownRowText: {color: "#444", textAlign: "left"},
+
+    optionsList: {flexDirection: "row", justifyContent: "space-between"},
+    optionRowText: {color: "#000000", fontSize: 18}
 });
 
 
 export default function InstrumentSelectScreen({route, navigation}) {
-    const [selectedTicker, setSelectedTicker] = useState(route.params.article.tickers[0]);
+    const [selectedStock, setSelectedStock] = useState(route.params.article.tickers[0]);
     const [stockData, setStockData] = useState({});
-    const [optionType, setOptionType] = useState("Call");
+    const [optionType, setOptionType] = useState("call");
+
     useEffect(() => {
         const fetchStockData = async () => {
-            const response = await axiosInstance.get("/api/stocks", {params: {symbol: [route.params.article.tickers]}}).catch(err => {
+            const response = await axiosInstance.get("/api/stocks", {params: {symbols: route.params.article.tickers.toString()}}).catch(err => {
                 console.error(err);
             });
             setStockData(response.data);
         }
         fetchStockData();
     }, []);
-    console.log(stockData);
 
     return (
         <View style={styles.container}>
@@ -45,21 +49,21 @@ export default function InstrumentSelectScreen({route, navigation}) {
                 data={route.params.article.tickers}
                 defaultButtonText={route.params.article.tickers[0]}
                 onSelect={(selectedItem, index) => {
+                    setSelectedStock(selectedItem);
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
-                    setSelectedTicker(selectedItem);
                     return selectedItem;
                 }}
                 rowTextForSelection={(item, index) => {
                     return item;
                 }}
-                buttonStyle={styles.dropdownBtnStyle}
-                buttonTextStyle={styles.dropdownBtnTextStyle}
-                dropdownStyle={styles.dropdownDropdownStyle}
-                rowStyle={styles.dropdownRowStyle}
-                rowTextStyle={styles.dropdownRowTextStyle}
+                buttonStyle={styles.dropdownBtn}
+                buttonTextStyle={styles.dropdownBtnText}
+                dropdownStyle={styles.dropdownDropdown}
+                rowStyle={styles.dropdownRow}
+                rowTextStyle={styles.dropdownRowText}
             />
-            {/*<CandlestickChart.Provider data={stockData.ohlc}>*/}
+            {/*<CandlestickChart.Provider data={stockData[selectedTicker].ohlc}>*/}
             {/*    <CandlestickChart>*/}
             {/*        <CandlestickChart.Candles/>*/}
             {/*    </CandlestickChart>*/}
@@ -69,22 +73,22 @@ export default function InstrumentSelectScreen({route, navigation}) {
                 primaryText="Call"
                 secondaryText="Put"
                 onPrimaryPress={() => {
-                    setOptionType("Call")
+                    setOptionType("call");
                 }}
                 onSecondaryPress={() => {
-                    setOptionType("Put")
+                    setOptionType("put");
                 }}
             />
-            {/*<FlatList*/}
-            {/*    data={(optionType === "Call") ? stockData.instruments.call : stockData.instruments.put}*/}
-            {/*    renderItem={({item}) => {*/}
-            {/*        return (*/}
-            {/*            <View>*/}
-            {/*                <Text style={{flexDirection: "row"}}>{item.name}</Text>*/}
-            {/*                <Text style={{flexDirection: "row"}}>{item.delta}</Text>*/}
-            {/*                <Text style={{flexDirection: "row"}}>{item.expiry}</Text>*/}
-            {/*            </View>)*/}
-            {/*    }}/>*/}
+            <FlatList
+                data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["options"][optionType] : {}}
+                renderItem={({item}) => {
+                    return (
+                        <View style={styles.optionsList}>
+                            <Text style={styles.optionRowText}>{item.name}</Text>
+                            <Text style={styles.optionRowText}>{item.delta}</Text>
+                            <Text style={styles.optionRowText}>{item.expiry}</Text>
+                        </View>)
+                }}/>
         </View>
     );
 }

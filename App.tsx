@@ -37,7 +37,7 @@ mock.onGet("/api/initial-articles").reply(200, [
     }]
 )
 
-mock.onGet("/api/stocks", {params: {symbols: ["AAPL", "GOOGL"]}}).reply(200, {
+mock.onGet("/api/stocks", {params: {symbols: "AAPL,GOOGL"}}).reply(200, {
         AAPL: {
             ohlc: [
                 {
@@ -69,7 +69,7 @@ mock.onGet("/api/stocks", {params: {symbols: ["AAPL", "GOOGL"]}}).reply(200, {
                     close: 33420.11,
                 },
             ],
-            instruments: {
+            options: {
                 call: [{name: "apple call option 1", delta: "0.05", expiry: "2023-04-01"}, {
                     name: "apple call option 2",
                     delta: "0.05",
@@ -113,7 +113,7 @@ mock.onGet("/api/stocks", {params: {symbols: ["AAPL", "GOOGL"]}}).reply(200, {
                     close: 33420.11,
                 },
             ],
-            instruments: {
+            options: {
                 call: [{name: "google call option 1", delta: "0.05", expiry: "2023-04-01"}, {
                     name: "google call option 2",
                     delta: "0.05",
@@ -144,7 +144,7 @@ export default function App() {
                     title: route?.params?.article.headline,
                     headerRight: () => (<Button title="Trade" color="#123456"/>)
                 })}/>
-                <Stack.Screen name="Select Instruments" component={InstrumentSelectScreen}/>
+                <Stack.Screen name="Select Instrument" component={InstrumentSelectScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
