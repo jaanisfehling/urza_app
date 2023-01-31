@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {FlatList, StyleSheet, View, Text} from "react-native";
+import {FlatList, StyleSheet, Text, View} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
 import {axiosInstance} from "../axiosInstance";
-import { CandlestickChart } from 'react-native-wagmi-charts';
-
+import {CandleChart} from "../components/candleChart";
 
 const styles = StyleSheet.create({
     container: {
@@ -44,6 +43,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
         fetchStockData();
     }, []);
 
+
     return (
         <View style={styles.container}>
             <SelectDropdown
@@ -64,12 +64,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
                 rowStyle={styles.dropdownRow}
                 rowTextStyle={styles.dropdownRowText}
             />
-            <CandlestickChart.Provider data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : {}}>
-                <CandlestickChart>
-                    <CandlestickChart.Candles/>
-                </CandlestickChart>
-            </CandlestickChart.Provider>
-
+            <CandleChart data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : undefined}/>
             <DuoToggleSwitch
                 primaryText="Call"
                 secondaryText="Put"

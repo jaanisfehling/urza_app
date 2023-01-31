@@ -41,28 +41,28 @@ mock.onGet("/api/stocks", {params: {symbols: "AAPL,GOOGL"}}).reply(200, {
         AAPL: {
             ohlc: [
                 {
-                    timestamp: 1625945400000,
+                    timestamp: "2021-02-04",
                     open: 33575.25,
                     high: 33600.52,
                     low: 33475.12,
                     close: 33520.11,
                 },
                 {
-                    timestamp: 1625946300000,
+                    timestamp: "2021-02-03",
                     open: 33545.25,
                     high: 33560.52,
                     low: 33510.12,
                     close: 33520.11,
                 },
                 {
-                    timestamp: 1625947200000,
+                    timestamp: "2021-02-02",
                     open: 33510.25,
                     high: 33515.52,
                     low: 33250.12,
                     close: 33250.11,
                 },
                 {
-                    timestamp: 1625948100000,
+                    timestamp: "2021-02-01",
                     open: 33215.25,
                     high: 33430.52,
                     low: 33215.12,
@@ -85,32 +85,32 @@ mock.onGet("/api/stocks", {params: {symbols: "AAPL,GOOGL"}}).reply(200, {
         GOOGL: {
             ohlc: [
                 {
-                    timestamp: 1625945400000,
-                    open: 33500.25,
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
                     high: 33600.52,
                     low: 33475.12,
                     close: 33520.11,
                 },
                 {
-                    timestamp: 1625946300000,
-                    open: 33500.25,
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
                     high: 33560.52,
                     low: 33510.12,
                     close: 33520.11,
                 },
                 {
-                    timestamp: 1625947200000,
-                    open: 33500.25,
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
                     high: 33515.52,
                     low: 33250.12,
                     close: 33250.11,
                 },
                 {
-                    timestamp: 1625948100000,
-                    open: 33200.25,
-                    high: 33430.52,
-                    low: 33215.12,
-                    close: 33420.11,
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
                 },
             ],
             options: {
