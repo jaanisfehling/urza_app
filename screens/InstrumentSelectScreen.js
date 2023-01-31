@@ -64,11 +64,6 @@ export default function InstrumentSelectScreen({route, navigation}) {
                 rowStyle={styles.dropdownRow}
                 rowTextStyle={styles.dropdownRowText}
             />
-            <CandlestickChart.Provider data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : {}}>
-                <CandlestickChart>
-                    <CandlestickChart.Candles/>
-                </CandlestickChart>
-            </CandlestickChart.Provider>
 
             <DuoToggleSwitch
                 primaryText="Call"
