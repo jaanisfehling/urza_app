@@ -16,7 +16,7 @@ export class CandleChart extends React.Component {
                     <VictoryAxis tickFormat={(t) => `${t.getDate()}/${t.getMonth()}`}/>
                     <VictoryAxis dependentAxis/>
                     <VictoryCandlestick
-                        candleColors={{positive: "#5f5c5b", negative: "#c43a31"}}
+                        candleColors={{positive: "#00ff00", negative: "#ff0000"}}
                         data={this.props.data}
                     />
                 </VictoryChart>)

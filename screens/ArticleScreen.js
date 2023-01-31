@@ -11,6 +11,7 @@ export default function ArticleScreen({route, navigation}) {
         var textElemns = document.querySelectorAll("p,ul,ol");
         for (var i = 0; i < textElemns.length; i++) {
             textElemns[i].style.fontSize = "50px";
+            textElemns[i].style.color = "white";
         }`;
 
 
@@ -18,13 +19,14 @@ export default function ArticleScreen({route, navigation}) {
         navigation.setOptions({
             headerRight: () => (
                 <Button onPress={() => navigation.navigate("Select Instrument", {article: route.params.article})}
-                        title="Trade" color="#123456"/>
+                        title="Trade" color="#2e2e2e"/>
             ),
         });
     }, [navigation]);
 
     return (
         <WebView
+            style={{backgroundColor: "black"}}
             originWhitelist={['*']}
             source={{html: route.params.article.html}}
             injectedJavaScript={injectedJavaScript}

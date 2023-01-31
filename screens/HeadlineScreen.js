@@ -7,11 +7,7 @@ import {axiosInstance} from "../axiosInstance";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    card: {
-        backgroundColor: "#123456",
-        borderRadius: 18,
-        margin: 5,
+        backgroundColor:"black"
     },
     title: {},
     headline: {
@@ -53,7 +49,7 @@ export default function HeadlineScreen({navigation}) {
                 data={articleList}
                 renderItem={({item}) => {
                     return (
-                        <Card style={styles.card}
+                        <Card style={{borderRadius: 18, margin: 5, backgroundColor: `rgb(${item.positive_sentiment*255}, ${(1-item.positive_sentiment)*255}, 0)`}}
                               onPress={() => navigation.navigate("Article", {article: item})}>
                             <Card.Title style={styles.title} titleStyle={styles.headline} subtitleStyle={styles.date}
                                         title={item.headline}

@@ -7,24 +7,29 @@ import {CandleChart} from "../components/candleChart";
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: "black",
         flex: 1,
+    },
+    innerContainer: {
         margin: 10,
+        alignItems: "center"
     },
 
     dropdownBtn: {
         height: 50,
-        backgroundColor: "#ffffff",
+        backgroundColor: "#333333",
         borderRadius: 8,
         borderWidth: 1,
         borderColor: "#444444",
     },
-    dropdownBtnText: {color: "#444", textAlign: "left"},
-    dropdownDropdown: {backgroundColor: "#EFEFEF", borderRadius: 8},
-    dropdownRow: {backgroundColor: "#EFEFEF", borderBottomColor: "#C5C5C5"},
-    dropdownRowText: {color: "#444", textAlign: "left"},
+    dropdownBtnText: {color: "#ffffff", textAlign: "left"},
+    dropdownDropdown: {backgroundColor: "#333333", borderRadius: 8},
+    dropdownRow: {backgroundColor: "#333333", borderBottomColor: "#444444"},
+    dropdownRowText: {color: "#ffffff", textAlign: "left"},
 
-    optionsList: {flexDirection: "row", justifyContent: "space-between"},
-    optionRowText: {color: "#000000", fontSize: 18}
+    optionsRow: {flexDirection: "row", justifyContent: "space-between"},
+    optionName: {fontSize: 14, color: "#999999", fontFamily: "OpenSans"},
+    optionRowText: {color: "#ffffff", fontSize: 18, fontFamily: "OpenSans"}
 });
 
 
@@ -46,43 +51,59 @@ export default function InstrumentSelectScreen({route, navigation}) {
 
     return (
         <View style={styles.container}>
-            <SelectDropdown
-                data={route.params.article.tickers}
-                defaultButtonText={route.params.article.tickers[0]}
-                onSelect={(selectedItem, index) => {
-                    setSelectedStock(selectedItem);
-                }}
-                buttonTextAfterSelection={(selectedItem, index) => {
-                    return selectedItem;
-                }}
-                rowTextForSelection={(item, index) => {
-                    return item;
-                }}
-                buttonStyle={styles.dropdownBtn}
-                buttonTextStyle={styles.dropdownBtnText}
-                dropdownStyle={styles.dropdownDropdown}
-                rowStyle={styles.dropdownRow}
-                rowTextStyle={styles.dropdownRowText}
-            />
-            <CandleChart data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : undefined}/>
-            <DuoToggleSwitch
-                primaryText="Call"
-                secondaryText="Put"
-                onPrimaryPress={() => {
-                    setOptionType("call");
-                }}
-                onSecondaryPress={() => {
-                    setOptionType("put");
-                }}
-            />
+            <View style={styles.innerContainer}>
+                <SelectDropdown
+                    data={route.params.article.tickers}
+                    defaultButtonText={route.params.article.tickers[0]}
+                    onSelect={(selectedItem, index) => {
+                        setSelectedStock(selectedItem);
+                    }}
+                    buttonTextAfterSelection={(selectedItem, index) => {
+                        return selectedItem;
+                    }}
+                    rowTextForSelection={(item, index) => {
+                        return item;
+                    }}
+                    buttonStyle={styles.dropdownBtn}
+                    buttonTextStyle={styles.dropdownBtnText}
+                    dropdownStyle={styles.dropdownDropdown}
+                    rowStyle={styles.dropdownRow}
+                    rowTextStyle={styles.dropdownRowText}
+                />
+                <CandleChart data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : undefined}/>
+                <DuoToggleSwitch
+                    primaryText="Call"
+                    secondaryText="Put"
+                    activeTextColor="#ffffff"
+                    inactiveTextColor="#777777"
+                    activeColor="#333333"
+                    inactiveColor="#444444"
+                    onPrimaryPress={() => {
+                        setOptionType("call");
+                    }}
+                    onSecondaryPress={() => {
+                        setOptionType("put");
+                    }}
+                />
+            </View>
             <FlatList
+                style={{flex: 2, margin: 10}}
                 data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["options"][optionType] : {}}
                 renderItem={({item}) => {
                     return (
-                        <View style={styles.optionsList}>
-                            <Text style={styles.optionRowText}>{item.name}</Text>
-                            <Text style={styles.optionRowText}>{item.delta}</Text>
-                            <Text style={styles.optionRowText}>{item.expiry}</Text>
+                        <View>
+                            <Text style={styles.optionName}>{item.name}</Text>
+                            <View style={styles.optionsRow}>
+                                <Text style={styles.optionRowText}>{item.strike} $</Text>
+                                <Text style={styles.optionRowText}>{item.delta}</Text>
+                                <Text style={styles.optionRowText}>{item.expiry}</Text>
+                            </View>
+                            <View
+                                style={{
+                                    borderBottomColor: 'white',
+                                    borderBottomWidth: StyleSheet.hairlineWidth,
+                                }}
+                            />
                         </View>)
                 }}/>
         </View>
