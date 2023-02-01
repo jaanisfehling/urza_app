@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {FlatList, StyleSheet, Text, View} from "react-native";
+import {FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
 import {axiosInstance} from "../axiosInstance";
@@ -70,7 +70,8 @@ export default function InstrumentSelectScreen({route, navigation}) {
                     rowStyle={styles.dropdownRow}
                     rowTextStyle={styles.dropdownRowText}
                 />
-                <CandleChart data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : undefined}/>
+                <CandleChart
+                    data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : undefined}/>
                 <DuoToggleSwitch
                     primaryText="Call"
                     secondaryText="Put"
@@ -91,7 +92,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
                 data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["options"][optionType] : {}}
                 renderItem={({item}) => {
                     return (
-                        <View>
+                        <Pressable onPress={() => navigation.navigate("Trade Instrument", {instrument: item.name})}>
                             <Text style={styles.optionName}>{item.name}</Text>
                             <View style={styles.optionsRow}>
                                 <Text style={styles.optionRowText}>{item.strike} $</Text>
@@ -104,7 +105,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
                                     borderBottomWidth: StyleSheet.hairlineWidth,
                                 }}
                             />
-                        </View>)
+                        </Pressable>)
                 }}/>
         </View>
     );

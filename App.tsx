@@ -7,6 +7,7 @@ import {Button} from "react-native";
 import InstrumentSelectScreen from "./screens/InstrumentSelectScreen";
 import MockAdapter from 'axios-mock-adapter';
 import {axiosInstance} from "./axiosInstance";
+import TradingScreen from "./screens/TradingScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -71,20 +72,132 @@ mock.onGet("/api/stocks", {params: {symbols: "AAPL,GOOGL"}}).reply(200, {
                     low: 33215.12,
                     close: 33420.11,
                 },
+                {
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
+                    high: 33560.52,
+                    low: 33510.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
+                    high: 33515.52,
+                    low: 33250.12,
+                    close: 33250.11,
+                },
+                {
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
+                    high: 33560.52,
+                    low: 33510.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
+                    high: 33515.52,
+                    low: 33250.12,
+                    close: 33250.11,
+                },
+                {
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
+                    high: 33560.52,
+                    low: 33510.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
+                    high: 33515.52,
+                    low: 33250.12,
+                    close: 33250.11,
+                },
+                {
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
+                    high: 33560.52,
+                    low: 33510.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
+                    high: 33515.52,
+                    low: 33250.12,
+                    close: 33250.11,
+                },
+                {
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
             ],
             options: {
-                call: [{name: "apple call option 1", strike: 80.00, delta: "0.05", expiry: "2023-04-01"}, {
-                    name: "apple call option 2",
+                call: [{name: "option", strike: 80.00, delta: "0.05", expiry: "2023-04-01"}, {
+                    name: "option",
                     strike: 41.00,
                     delta: "0.05",
                     expiry: "2023-04-01"
-                }, {name: "apple call option 3", strike: 90.00, delta: "0.05", expiry: "2023-04-01"}],
-                put: [{name: "apple put option 1", strike: 80.00, delta: "0.05", expiry: "2023-04-01"}, {
-                    name: "apple put option 2",
+                }, {name: "option", strike: 90.00, delta: "0.05", expiry: "2023-04-01"}],
+                put: [{name: "option", strike: 80.00, delta: "0.05", expiry: "2023-04-01"}, {
+                    name: "option",
                     strike: 78.00,
                     delta: "0.05",
                     expiry: "2023-04-01"
-                }, {name: "apple put option 3", strike: 90.00, delta: "0.05", expiry: "2023-04-01"}]
+                }, {name: "option", strike: 90.00, delta: "0.05", expiry: "2023-04-01"}]
             }
         },
         GOOGL: {
@@ -117,22 +230,252 @@ mock.onGet("/api/stocks", {params: {symbols: "AAPL,GOOGL"}}).reply(200, {
                     low: 33475.12,
                     close: 33520.11,
                 },
+                {
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
+                    high: 33560.52,
+                    low: 33510.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
+                    high: 33515.52,
+                    low: 33250.12,
+                    close: 33250.11,
+                },
+                {
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
+                    high: 33560.52,
+                    low: 33510.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
+                    high: 33515.52,
+                    low: 33250.12,
+                    close: 33250.11,
+                },
+                {
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-04",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-03",
+                    open: 33545.25,
+                    high: 33560.52,
+                    low: 33510.12,
+                    close: 33520.11,
+                },
+                {
+                    timestamp: "2021-02-02",
+                    open: 33510.25,
+                    high: 33515.52,
+                    low: 33250.12,
+                    close: 33250.11,
+                },
+                {
+                    timestamp: "2021-02-01",
+                    open: 33575.25,
+                    high: 33600.52,
+                    low: 33475.12,
+                    close: 33520.11,
+                },
             ],
             options: {
-                call: [{name: "google call option 1", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}, {
-                    name: "google call option 2",
+                call: [{name: "option", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}, {
+                    name: "option",
                     strike: 78.00,
                     delta: "0.05",
                     expiry: "2023-04-01"
-                }, {name: "google call option 3", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}],
-                put: [{name: "google put option 1", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}, {
-                    name: "google put option 2",
-                    strike: 78.00,
+                }, {name: "option", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}],
+                put: [{name: "option", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}, {
+                    name: "option",
+                    strike: 10.00,
                     delta: "0.05",
                     expiry: "2023-04-01"
-                }, {name: "google put option 3", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}]
+                }, {name: "option", strike: 78.00, delta: "0.05", expiry: "2023-04-01"}]
             }
         }
+    }
+)
+
+mock.onGet("/api/instrument", {params: {name: "option"}}).reply(200, {
+        ohlc: [
+            {
+                timestamp: "2021-02-04",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-03",
+                open: 33545.25,
+                high: 33560.52,
+                low: 33510.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-02",
+                open: 33510.25,
+                high: 33515.52,
+                low: 33250.12,
+                close: 33250.11,
+            },
+            {
+                timestamp: "2021-02-01",
+                open: 33215.25,
+                high: 33430.52,
+                low: 33215.12,
+                close: 33420.11,
+            },
+            {
+                timestamp: "2021-02-04",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-03",
+                open: 33545.25,
+                high: 33560.52,
+                low: 33510.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-02",
+                open: 33510.25,
+                high: 33515.52,
+                low: 33250.12,
+                close: 33250.11,
+            },
+            {
+                timestamp: "2021-02-01",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-04",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-03",
+                open: 33545.25,
+                high: 33560.52,
+                low: 33510.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-02",
+                open: 33510.25,
+                high: 33515.52,
+                low: 33250.12,
+                close: 33250.11,
+            },
+            {
+                timestamp: "2021-02-01",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-04",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-03",
+                open: 33545.25,
+                high: 33560.52,
+                low: 33510.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-02",
+                open: 33510.25,
+                high: 33515.52,
+                low: 33250.12,
+                close: 33250.11,
+            },
+            {
+                timestamp: "2021-02-01",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-04",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-03",
+                open: 33545.25,
+                high: 33560.52,
+                low: 33510.12,
+                close: 33520.11,
+            },
+            {
+                timestamp: "2021-02-02",
+                open: 33510.25,
+                high: 33515.52,
+                low: 33250.12,
+                close: 33250.11,
+            },
+            {
+                timestamp: "2021-02-01",
+                open: 33575.25,
+                high: 33600.52,
+                low: 33475.12,
+                close: 33520.11,
+            },
+        ]
     }
 )
 
@@ -152,6 +495,7 @@ export default function App() {
                     headerRight: () => (<Button title="Trade" color="#2e2e2e"/>)
                 })}/>
                 <Stack.Screen name="Select Instrument" component={InstrumentSelectScreen}/>
+                <Stack.Screen name="Trade Instrument" component={TradingScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

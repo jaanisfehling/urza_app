@@ -13,8 +13,16 @@ export class CandleChart extends React.Component {
                     domainPadding={{x: 25}}
                     scale={{x: "time"}}
                 >
-                    <VictoryAxis tickFormat={(t) => `${t.getDate()}/${t.getMonth()}`}/>
-                    <VictoryAxis dependentAxis/>
+                    <VictoryAxis style={{
+                        axis: {stroke: "transparent"},
+                        ticks: {stroke: "transparent"},
+                        tickLabels: {fill: "transparent"}
+                    }}/>
+                    <VictoryAxis dependentAxis style={{
+                        axis: {stroke: "transparent"},
+                        ticks: {stroke: "transparent"},
+                        tickLabels: {fill: "transparent"}
+                    }}/>
                     <VictoryCandlestick
                         candleColors={{positive: "#00ff00", negative: "#ff0000"}}
                         data={this.props.data}
