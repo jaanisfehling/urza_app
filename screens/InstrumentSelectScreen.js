@@ -32,7 +32,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
     const [selectedStock, setSelectedStock] = useState(route.params.article.tickers[0]);
     const [stockData, setStockData] = useState({});
     const [optionType, setOptionType] = useState("call");
-    const [candles, setCandles] = useState(true);
+    const [candles, setCandles] = useState(false);
 
     useEffect(() => {
         const fetchStockData = async () => {
