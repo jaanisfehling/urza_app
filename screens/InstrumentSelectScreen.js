@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {FlatList, Pressable, StyleSheet, Text, View} from "react-native";
+import {FlatList, Pressable, StyleSheet, Switch, Text, View} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
 import {axiosInstance} from "../axiosInstance";
 import {Chart} from "../components/Chart";
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "black",
-        flex: 1,
-    },
-    innerContainer: {
-        margin: 10,
-        alignItems: "center"
-    },
+    container: {backgroundColor: "black", flex: 1,},
+    innerContainer: {margin: 10, alignItems: "center"},
+    headerContainer: {margin: 10, flexDirection: "row", justifyContent: "space-between"},
 
     dropdownBtn: {
         height: 50,
@@ -37,6 +32,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
     const [selectedStock, setSelectedStock] = useState(route.params.article.tickers[0]);
     const [stockData, setStockData] = useState({});
     const [optionType, setOptionType] = useState("call");
+    const [candles, setCandles] = useState(true);
 
     useEffect(() => {
         const fetchStockData = async () => {
@@ -51,7 +47,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.innerContainer}>
+            <View style={styles.headerContainer}>
                 <SelectDropdown
                     data={route.params.article.tickers}
                     defaultButtonText={route.params.article.tickers[0]}
@@ -70,8 +66,20 @@ export default function InstrumentSelectScreen({route, navigation}) {
                     rowStyle={styles.dropdownRow}
                     rowTextStyle={styles.dropdownRowText}
                 />
+                <View>
+                    <Text style={{color: "#ffffff", fontFamily: "OpenSans"}}>Candles</Text>
+                    <Switch
+                        trackColor={{false: "#666666", true: "#666666"}}
+                        thumbColor={candles ? "#dedede" : "#dedede"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={() => setCandles(previousState => !previousState)}
+                        value={candles}
+                    />
+                </View>
+            </View>
+            <View style={styles.innerContainer}>
                 <Chart
-                    type="line"
+                    type={candles ? "candles" : "line"}
                     data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : undefined}/>
                 <DuoToggleSwitch
                     primaryText="Call"
@@ -102,7 +110,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
                             </View>
                             <View
                                 style={{
-                                    borderBottomColor: 'white',
+                                    borderBottomColor: "white",
                                     borderBottomWidth: StyleSheet.hairlineWidth,
                                 }}
                             />

@@ -8,11 +8,11 @@ export class Chart extends React.Component {
 
     render() {
         if (this.props.data !== undefined) {
-            if (this.props.type === "candle") {
+            if (this.props.type === "candles") {
                 return (
                     <VictoryChart
                         domainPadding={{x: 0}}
-                        scale={{x: "time"}}
+                        // scale={{x: "time"}}
                         padding={{top: 0, bottom: 0, right: 10, left: 10}}
                     >
                         <VictoryAxis style={{
@@ -36,11 +36,11 @@ export class Chart extends React.Component {
                             x="t"
                         />
                     </VictoryChart>)
-            } else {
+            } else if (this.props.type === "line") {
                 return (
                     <VictoryChart
                         domainPadding={{x: 0}}
-                        scale={{x: "time"}}
+                        // scale={{x: "time"}}
                         padding={{top: 0, bottom: 0, right: 0, left: 0}}
                     >
                         <VictoryAxis style={{
