@@ -3,7 +3,7 @@ import {FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
 import {axiosInstance} from "../axiosInstance";
-import {CandleChart} from "../components/candleChart";
+import {Chart} from "../components/Chart";
 
 const styles = StyleSheet.create({
     container: {
@@ -70,7 +70,8 @@ export default function InstrumentSelectScreen({route, navigation}) {
                     rowStyle={styles.dropdownRow}
                     rowTextStyle={styles.dropdownRowText}
                 />
-                <CandleChart
+                <Chart
+                    type="line"
                     data={(Object.keys(stockData).length !== 0) ? stockData[selectedStock]["ohlc"] : undefined}/>
                 <DuoToggleSwitch
                     primaryText="Call"

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {axiosInstance} from "../axiosInstance";
-import {CandleChart} from "../components/candleChart";
+import {CandleChart} from "../components/Chart";
 
 const styles = StyleSheet.create({
     container: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
 export default function TradingScreen({route, navigation}) {
     const [instrumentData, setInstrumentData] = useState({});
-    
+
     useEffect(() => {
         const fetchInstrumentData = async () => {
             const response = await axiosInstance.get("/api/instrument", {params: {name: route.params.instrument}}).catch(err => {
