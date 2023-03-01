@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
-import {axiosInstance} from "../axiosInstance";
+import {axiosInstance, fontRegular} from "../utils";
 import {CandleChart} from "../components/Chart";
 
 const styles = StyleSheet.create({
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     header: {
         color: "#ffffff",
         fontSize: 26,
-        fontFamily: "OpenSans"
+        fontFamily: fontRegular
     }
 });
 

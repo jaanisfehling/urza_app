@@ -6,8 +6,9 @@ import HeadlineScreen from "./screens/HeadlineScreen";
 import {Button} from "react-native";
 import InstrumentSelectScreen from "./screens/InstrumentSelectScreen";
 import MockAdapter from 'axios-mock-adapter';
-import {axiosInstance} from "./axiosInstance";
+import {axiosInstance, fontBold} from "./utils";
 import TradingScreen from "./screens/TradingScreen";
+import LoginScreen from "./screens/LoginScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -563,12 +564,13 @@ mock.onGet("/api/instrument", {params: {name: "option"}}).reply(200, {
 export default function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Headlines" screenOptions={{
+            <Stack.Navigator initialRouteName="Login" screenOptions={{
                 headerStyle: {backgroundColor: "#123456",},
                 headerTintColor: "#ffffff",
-                headerTitleStyle: {fontWeight: "bold",},
+                headerTitleStyle: {fontFamily: fontBold},
                 contentStyle: {backgroundColor: "#ffffff"}
             }}>
+                <Stack.Screen name="Login" component={LoginScreen}/>
                 <Stack.Screen name="Headlines" component={HeadlineScreen}/>
                 <Stack.Screen name="Article" component={ArticleScreen} options={({navigation, route}) => ({
                     title: route?.params?.article.headline,

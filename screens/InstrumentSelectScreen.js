@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {FlatList, Pressable, StyleSheet, Switch, Text, View} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
-import {axiosInstance} from "../axiosInstance";
+import {axiosInstance, fontRegular} from "../utils";
 import {Chart} from "../components/Chart";
 
 const styles = StyleSheet.create({
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     dropdownRowText: {color: "#ffffff", textAlign: "left"},
 
     optionsRow: {flexDirection: "row", justifyContent: "space-between"},
-    optionName: {fontSize: 14, color: "#999999", fontFamily: "OpenSans"},
-    optionRowText: {color: "#ffffff", fontSize: 18, fontFamily: "OpenSans"}
+    optionName: {fontSize: 14, color: "#999999", fontFamily: fontRegular},
+    optionRowText: {color: "#ffffff", fontSize: 18, fontFamily: fontRegular}
 });
 
 
@@ -67,7 +67,7 @@ export default function InstrumentSelectScreen({route, navigation}) {
                     rowTextStyle={styles.dropdownRowText}
                 />
                 <View>
-                    <Text style={{color: "#ffffff", fontFamily: "OpenSans"}}>Candles</Text>
+                    <Text style={{color: "#ffffff", fontFamily: fontRegular}}>Candles</Text>
                     <Switch
                         trackColor={{false: "#666666", true: "#666666"}}
                         thumbColor={candles ? "#dedede" : "#dedede"}
