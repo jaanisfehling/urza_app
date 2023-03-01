@@ -9,6 +9,8 @@ import MockAdapter from 'axios-mock-adapter';
 import {axiosInstance, fontBold} from "./utils";
 import TradingScreen from "./screens/TradingScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ResetPwdScreen from "./screens/ResetPwdScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -571,6 +573,8 @@ export default function App() {
                 contentStyle: {backgroundColor: "#ffffff"}
             }}>
                 <Stack.Screen name="Login" component={LoginScreen}/>
+                <Stack.Screen name="Register" component={RegisterScreen}/>
+                <Stack.Screen name="Reset Password" component={ResetPwdScreen}/>
                 <Stack.Screen name="Headlines" component={HeadlineScreen}/>
                 <Stack.Screen name="Article" component={ArticleScreen} options={({navigation, route}) => ({
                     title: route?.params?.article.headline,

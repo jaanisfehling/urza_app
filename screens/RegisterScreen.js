@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {fontLightItalic, fontRegular} from "../utils";
 
 
@@ -31,45 +31,53 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontSize: 16
     },
-    helperText: {
+    inputLabel: {
         fontFamily: fontRegular,
         color: "#ffffff",
-        fontSize: 12
+        fontSize: 10,
+        marginLeft: 15
     },
 });
 
-export default function LoginScreen({navigation}) {
+export default function RegisterScreen({navigation}) {
     const [email, onChangeEmail] = React.useState("");
+    const [emailConfirm, onChangeEmailConfirm] = React.useState("");
     const [password, onChangePassword] = React.useState("");
+    const [passwordConfirm, onChangePasswordConfirm] = React.useState("");
 
     return (
         <View style={styles.container}>
+            <Text style={styles.inputLabel}>Email</Text>
             <TextInput style={styles.input}
                        onChangeText={onChangeEmail}
                        value={email}
                        placeholder="Email"
                        autoComplete="email"
                        inputMode="email"/>
+            <Text style={styles.inputLabel}>Confirm Email</Text>
+            <TextInput style={styles.input}
+                       onChangeText={onChangeEmailConfirm}
+                       value={emailConfirm}
+                       placeholder="Confirm Email"
+                       autoComplete="email"
+                       inputMode="email"/>
+            <Text style={styles.inputLabel}>Password</Text>
             <TextInput style={styles.input}
                        onChangeText={onChangePassword}
                        value={password}
                        placeholder="Password"
                        secureTextEntry={true}/>
+            <Text style={styles.inputLabel}>Confirm Password</Text>
+            <TextInput style={styles.input}
+                       onChangeText={onChangePasswordConfirm}
+                       value={passwordConfirm}
+                       placeholder="Confirm Password"
+                       secureTextEntry={true}/>
 
             <TouchableOpacity style={styles.button} onPress={() => {
             }}>
-
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>
-
-            <View style={{alignItems: "center"}}>
-                <Pressable style={{padding: 4}} onPress={() => navigation.navigate("Reset Password")}>
-                    <Text style={styles.helperText}>Reset Password</Text>
-                </Pressable>
-                <Pressable style={{padding: 4}} onPress={() => navigation.navigate("Register")}>
-                    <Text style={styles.helperText}>Register</Text>
-                </Pressable>
-            </View>
         </View>
     );
 }
