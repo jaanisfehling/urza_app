@@ -10,3 +10,5 @@ export const fontLightItalic = "Merriweather-LightItalic"
 export const fontRegularItalic = "Merriweather-Italic"
 export const fontBoldItalic = "Merriweather-BoldItalic"
 export const fontBlackItalic = "Merriweather-BlackItalic"
+
+export const baseUrl = "https://api.urza.ai/api/v1"

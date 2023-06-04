@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {fontLightItalic, fontRegular} from "../utils";
+import {fontLightItalic, fontRegular} from "../consts";
 
 
 const styles = StyleSheet.create({

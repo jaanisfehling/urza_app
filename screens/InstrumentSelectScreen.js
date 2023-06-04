@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {FlatList, Pressable, StyleSheet, Switch, Text, View} from "react-native";
 import SelectDropdown from "react-native-select-dropdown"
 import DuoToggleSwitch from "react-native-duo-toggle-switch";
-import {axiosInstance, fontRegular} from "../utils";
+import {axiosInstance, fontRegular} from "../consts";
 import {Chart} from "../components/Chart";
 
 const styles = StyleSheet.create({

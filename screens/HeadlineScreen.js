@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
-import {axiosInstance} from "../utils";
+import {axiosInstance} from "../consts";
 
 
 const styles = StyleSheet.create({
